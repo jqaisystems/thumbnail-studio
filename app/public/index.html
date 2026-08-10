@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thumbnail Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<aside class="side">
+  <a class="brand" href="#/">
+    <span class="brand-sticker">THUMBNAIL</span>
+    <span class="brand-sticker tilt">STUDIO</span>
+    <span class="brand-sub" id="brandSub"></span>
+  </a>
+
+  <button class="btn btn-accent" id="newProjectBtn">+ New video</button>
+
+  <nav class="nav" aria-label="Main" id="mainNav">
+    <a class="nav-link" href="#/" data-nav="home"><span class="nav-ico">◆</span> Studio home</a>
+    <a class="nav-link" href="#/suggestions" data-nav="suggestions"><span class="nav-ico">✦</span> Guests &amp; ideas</a>
+    <a class="nav-link" href="#/grid" data-nav="grid"><span class="nav-ico">▦</span> Channel grid</a>
+    <a class="nav-link" href="#/roadmap" data-nav="roadmap"><span class="nav-ico">↗</span> Roadmap</a>
+    <a class="nav-link" href="#/usage" data-nav="usage"><span class="nav-ico">◔</span> Usage</a>
+    <a class="nav-link" href="#/how" data-nav="how"><span class="nav-ico">?</span> How it works</a>
+    <a class="nav-link" href="#/settings" data-nav="settings"><span class="nav-ico">⚙</span> Settings</a>
+  </nav>
+
+  <div class="side-label">Videos</div>
+  <nav class="project-list" id="projectList" aria-label="Projects"></nav>
+
+  <div class="side-foot">
+    <div class="rotation-strip" id="rotationStrip" title="The 7 colorways"></div>
+    <div class="credit">
+      Built by <b>João Queirós</b> in Porto, Portugal<br>
+      <a href="https://www.ai.joaoqueiros.com" target="_blank" rel="noopener">ai.joaoqueiros.com</a> · © 2026
+    </div>
+  </div>
+</aside>
+
+<main class="main" id="main"><!-- rendered by app.js --></main>
+
+<div class="overlay" id="overlay" hidden></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="demo-config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

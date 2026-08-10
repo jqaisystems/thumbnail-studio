@@ -1,0 +1,38 @@
+{
+  "_comment": "Example only. The real data/suggestions.json is gitignored, because it holds research about named real people. Copy this to suggestions.json to start, or just let the weekly refresh write it (see scripts/refresh-suggestions.cmd). The app works fine with no file at all: the Guests page simply shows nothing.",
+  "updatedAt": "2026-01-01T09:00:00.000Z",
+  "guests": [
+    {
+      "id": "example-guest-1",
+      "name": "Jane Example",
+      "who": "Founder of a fictional developer tools company",
+      "title": "She Replaced Her Whole Support Team With One Script",
+      "hook": "$40K a month, two people",
+      "notes": "Lead with the money figure. She has a recognisable product logo worth attaching as a reference.",
+      "why": "Fits the show pattern: a big number plus a mechanism the audience did not expect.",
+      "source": { "name": "Example Source", "url": "https://example.com/jane" },
+      "used": false
+    },
+    {
+      "id": "example-guest-2",
+      "name": "Alex Placeholder",
+      "who": "Solo builder, fictional",
+      "title": "He Shipped 12 Apps In A Year And One Paid For All Of Them",
+      "hook": "11 failures, 1 hit",
+      "notes": "The contrast is the thumbnail. Consider the before-and-after layout.",
+      "why": "Failure-then-win stories test well with a builder audience.",
+      "source": { "name": "Example Source", "url": "https://example.com/alex" },
+      "used": false
+    }
+  ],
+  "solo": [
+    {
+      "id": "example-solo-1",
+      "title": "The Cheapest Way To Run AI Image Generation In 2026",
+      "hook": "$0 a month",
+      "notes": "A price comparison video. The hero element is the zero.",
+      "source": { "name": "Example Source", "url": "https://example.com/pricing" },
+      "used": false
+    }
+  ]
+}

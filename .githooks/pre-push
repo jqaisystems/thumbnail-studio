@@ -1,0 +1,9 @@
+#!/bin/sh
+# Refuses the push if anything private reached git, in the tree or in history.
+#
+# Enable once per clone (hooks are not carried by git itself):
+#   git config core.hooksPath .githooks
+#
+# Skip deliberately, knowing what you are doing:  git push --no-verify
+
+exec node "$(git rev-parse --show-toplevel)/scripts/check-release.mjs"

@@ -1,0 +1,19 @@
+{
+  "name": "thumbnail-studio",
+  "version": "1.0.0",
+  "description": "One video brief into seven on-brand YouTube thumbnails, locally",
+  "license": "MIT",
+  "author": "João Queirós",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@imgly/background-removal-node": "^1.4.5",
+    "archiver": "^7.0.1",
+    "express": "^4.19.2",
+    "multer": "^2.0.1",
+    "playwright-core": "^1.62.1",
+    "sharp": "^0.35.3"
+  }
+}

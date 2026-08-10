@@ -1,0 +1,100 @@
+{
+  "items": [
+    {
+      "id": "r1",
+      "title": "Real CTR feedback loop",
+      "detail": "Paste each published video's click-through rate from YouTube Studio into its project. The winner analytics then learn from what viewers actually click, not just what you pick. Bias shifts from taste to data.",
+      "category": "analytics",
+      "status": "proposed",
+      "proposedAt": "2026-08-05"
+    },
+    {
+      "id": "r2",
+      "title": "Title A/B suggester",
+      "detail": "For every project, score and gather video titles against the winning thumbnail using the blueprint's ~50% overlap rule. Shipped as the Title section plus the thumbnail-first project mode, per feedback from the channel this was tuned on, that creators often design the thumbnail before the title. The mechanical generator was later cut back to the few formulas that actually work, because a title supporting a thumbnail must add what the brief does not contain: the section now scores your current title and your own draft alongside the candidates, explains each score in plain language, and feeds the ones you tick into TITLE_INSTRUCTIONS.md so an agent writes more in that register.",
+      "category": "packaging",
+      "status": "done",
+      "proposedAt": "2026-08-05"
+    },
+    {
+      "id": "r3",
+      "title": "Vertical variant (Shorts / community posts)",
+      "detail": "One click turns the winner into a 1080x1920 vertical version, either a smart crop or a regenerated vertical composition, for Shorts covers and community posts.",
+      "category": "formats",
+      "status": "proposed",
+      "proposedAt": "2026-08-05"
+    },
+    {
+      "id": "r4",
+      "title": "Thumbnail localization",
+      "detail": "Regenerate the winner with its text translated (Portuguese, Spanish...) for international packaging tests. Same layout, same face, different words.",
+      "category": "formats",
+      "status": "proposed",
+      "proposedAt": "2026-08-05"
+    },
+    {
+      "id": "r5",
+      "title": "Brand kit export / import",
+      "detail": "Export the whole brand (colorways, layouts, prompt rules, host photos) as one file another creator can import. Turns the studio into a template anyone can rebrand in minutes. Pairs with the open-source release.",
+      "category": "sharing",
+      "status": "proposed",
+      "proposedAt": "2026-08-05"
+    },
+    {
+      "id": "r8",
+      "title": "Square 1080x1080 from the creative portrait take",
+      "detail": "Reuse the Creative continuation portrait prompt to also produce a 1080x1080 square version for LinkedIn carousels and Instagram. Nearly free to add since the prompt and pipeline already exist; only a fourth slot and a square finalize crop are needed.",
+      "category": "formats",
+      "status": "proposed",
+      "proposedAt": "2026-08-06"
+    },
+    {
+      "id": "r7",
+      "title": "Playwright persistent-profile runner (experimental)",
+      "detail": "A no-extension browser runner: a real Chrome window opens once, you log in to ChatGPT by hand, and the session cookies persist in a local profile. Automation then runs without ever storing a password. Built as scripts/chatgpt-runner.mjs with a 'playwright' provider option in Settings.",
+      "category": "automation",
+      "status": "done",
+      "proposedAt": "2026-08-05"
+    },
+    {
+      "id": "r12",
+      "title": "Recolour the winner, and a repeatable check script",
+      "detail": "The 7 weld layout to colour: slot i always gets colorway (seed + i) mod 7, so a project could never produce this layout in that colour. The final round now carries a colour picker, and when the colour changes one option keeps the winning text so a pure recolour is one click. The trap was that four things describe the winner's colour (the portrait card glow, both alt texts and the AI portrait prompts) and all four inferred it from p.winner, which goes wrong the moment a shipped option is recoloured; a shippedColorway resolver now feeds all of them. Shipped alongside scripts/check.mjs, which runs the whole pipeline on a scratch project and asserts about 30 invariants, including that one, so these failures stop being things only a careful reader would catch.",
+      "category": "packaging",
+      "status": "done",
+      "proposedAt": "2026-08-07"
+    },
+    {
+      "id": "r11",
+      "title": "Final round: re-cut the winner against the chosen title",
+      "detail": "Nothing checked that the finished title and thumbnail worked together. The winning text is written before the title is settled, so the pair drifts: one real project ended at 17% overlap against a 50% target. The final round rebuilds the winning composition with only the text changed, derived from the adopted title by subsetting about half its content words, which lands in the window by construction. The full title is never rendered on the image. The chosen final becomes the delivered image for the export, social pack, portraits and ZIP, while p.winner keeps pointing at the variation so the layout and colorway analytics stay honest.",
+      "category": "packaging",
+      "status": "done",
+      "proposedAt": "2026-08-07"
+    },
+    {
+      "id": "r10",
+      "title": "Edit any of the 7 prompts in the studio",
+      "detail": "The pack files were write-only outputs, so a careful hand edit of variation-3.md vanished on the next rebuild without warning. The 7 are now editable in the app: the text on the image inline on each card, or the whole prompt in the Prompt panel. Edits live on the project and survive rebuilds. A text edit keeps following the brief for everything else; a full prompt edit freezes that variation and is badged as such. The Seven also shows the full path to the pack folder.",
+      "category": "workflow",
+      "status": "done",
+      "proposedAt": "2026-08-07"
+    },
+    {
+      "id": "r9",
+      "title": "Auto mood and written expressions",
+      "detail": "The facial expression used to be one value across all 7 variations, and archetypes D and E ignored it entirely. Auto now reads the brief, picks a base mood and spreads a related ring across the 7 so every option has a different face. An agent can go further and write a free-form expression per variation via pack/MOOD_INSTRUCTIONS.md, which overrides the palette and survives rebuilds. Written expressions stay per project rather than joining the six, so the brand palette stays fixed.",
+      "category": "prompts",
+      "status": "done",
+      "proposedAt": "2026-08-07"
+    },
+    {
+      "id": "r6",
+      "title": "Project archiving",
+      "detail": "Auto-move projects older than 90 days into an archive folder so the sidebar and channel grid stay fast and focused, with a page to browse the archive.",
+      "category": "housekeeping",
+      "status": "proposed",
+      "proposedAt": "2026-08-05"
+    }
+  ]
+}

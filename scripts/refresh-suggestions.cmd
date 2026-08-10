@@ -1,0 +1,7 @@
+@echo off
+rem Weekly refresh of guest + solo-video suggestions for Thumbnail Studio.
+rem Run by Windows Task Scheduler every Monday morning (or run manually anytime).
+rem Needs the Claude Code CLI on your PATH. If "claude" is not found, replace it
+rem below with the full path to claude.exe.
+cd /d "%~dp0.."
+claude -p "Refresh the suggestions for the Thumbnail Studio in this folder. Read data\suggestions.json. Keep every entry marked used:true. Research fresh candidates from THESE sources first: https://github.com/trending and https://github.com/trending?since=weekly (breakout repos and their creators), https://github.com/trending/developers and https://github.com/trending/developers?since=weekly, https://www.indiehackers.com/ (revenue stories), https://news.ycombinator.com/ (Show HN and launch threads), plus general web search. Candidates must be AI founders and builders with real, verifiable revenue or traction who fit the show described in data\settings.json (hostName and showName). Rewrite data\suggestions.json in the exact same schema with 8 guests and 6 solo video ideas total; each guest gets name, who, title, hook, notes, why, and source {name, url} pointing at where you found them; each solo idea gets title, hook, notes and optional source. Set updatedAt to the current ISO timestamp. Give every new entry a unique id. Do not use em dashes anywhere. Only edit data\suggestions.json, nothing else." --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep" >> scripts\refresh-suggestions.log 2>&1

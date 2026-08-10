@@ -1,0 +1,38 @@
+node_modules/
+data/settings.json
+# Photos of a real person, and other channels' thumbnails. Neither is ours to
+# hand out in a repo, and the second is not ours to relicense at all. The
+# folders keep a README saying what to put in them.
+#
+# This rule is what makes this repository publishable. scripts/check-release.mjs
+# enforces it against history as well as the working tree, because a purge is
+# not something you get to do twice.
+# Deliberately not a list of extensions. A rule naming jpg/png/webp misses the
+# .heic an iPhone actually hands you, and that is the accident that happens.
+brand/**
+!brand/**/
+!brand/**/README.md
+
+# The editable master of the product mark. Nothing in the app reads it, it is
+# the only asset carrying the machine's account name in its metadata, and MIT
+# would hand strangers the right to redistribute a modified brand mark. The
+# exported PNGs and SVGs in logo/ are what anyone running this actually needs.
+logo/*.ai
+logo/*.eps
+logo/*.psd
+# Guest research: names real people with commercial notes about them.
+# data/suggestions.example.json shows the shape.
+data/suggestions.json
+data/channel-cache.json
+data/chatgpt-profile/
+data/usage.json
+projects/
+scripts/*.log
+*.log
+demo/
+scripts/runner-debug.png
+# Built by scripts/build-handoff.mjs. It carries host photos on purpose, so it
+# must never be tracked here. handoff.config.json names a real person.
+handoff/
+handoff.zip
+handoff.config.json
