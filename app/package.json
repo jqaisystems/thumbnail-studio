@@ -5,6 +5,10 @@
   "license": "MIT",
   "author": "João Queirós",
   "main": "server.js",
+  "//engines": "Global fetch and structuredClone are used unguarded, and AbortSignal.timeout in six places. 18 is the floor, not a preference.",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "start": "node server.js"
   },

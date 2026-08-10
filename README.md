@@ -6,6 +6,14 @@
 
 # Thumbnail Studio
 
+<p align="center">
+  <a href="LICENSE"><img alt="MIT licensed" src="https://img.shields.io/badge/license-MIT-6E63F2?style=flat-square"></a>
+  <img alt="Requires Node 18 or newer" src="https://img.shields.io/badge/node-%E2%89%A5%2018-6E63F2?style=flat-square">
+  <img alt="Runs entirely on your machine" src="https://img.shields.io/badge/runs-100%25%20locally-6E63F2?style=flat-square">
+  <img alt="No API key required" src="https://img.shields.io/badge/API%20key-optional-6E63F2?style=flat-square">
+  <img alt="Windows, macOS and Linux" src="https://img.shields.io/badge/os-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-6E63F2?style=flat-square">
+</p>
+
 A local, private studio that turns one video brief into **7 ready-to-choose
 YouTube thumbnails**, on brand, every time, then scores your title against the
 one that wins. Start from a title, or start from a concept and write the title
