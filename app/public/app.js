@@ -2256,11 +2256,18 @@ window.addEventListener('hashchange', route);
 function mountDemoBanner() {
   const bar = document.createElement('div');
   bar.className = 'demo-bar';
+  // The second sentence is the approved attribution, word for word. Andrew gave
+  // permission for his own image; the guests in these episode thumbnails did
+  // not, so the wording has to say they appear without implying they consented
+  // or endorsed anything. It is the same text as the product page, the case
+  // study and the end card of all seven films. Do not paraphrase it.
   bar.innerHTML =
-    '<b>Read-only demo</b> · Thumbnail Studio, built by João Queirós for Andrew Warner. ' +
+    '<b>Read-only demo</b> · Thumbnail Studio, built by João Queirós. ' +
     'Browse everything, compare, and rank. Generating and saving are turned off here. ' +
-    'Thumbnails shown were made for <a href="https://www.youtube.com/@TheNextNewThingAI" target="_blank" rel="noopener">Andrew Warner</a>’s ' +
-    'channel and he appears with his permission, for demonstration only.';
+    'Andrew Warner appears with his permission. The thumbnails are demonstration ' +
+    'artwork made for episodes of his channel, ' +
+    '<a href="https://www.youtube.com/@TheNextNewThingAI" target="_blank" rel="noopener">The Next New Thing</a>, ' +
+    'and feature those episodes’ guests. No affiliation or endorsement is implied.';
   document.body.appendChild(bar);
   document.body.classList.add('is-demo');
 }
