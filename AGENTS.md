@@ -137,7 +137,7 @@ Three separate mechanisms, easy to confuse:
   flips it.
 - **Private handoff**: `node scripts/build-handoff.mjs`. Produces a runnable
   copy WITH the host photos, plus a ZIP, for the person whose channel this was
-  built for. It goes to a private repository that must never be public.
+  built around. It goes to a private repository that must never be public.
 - **Public release**: this repository, as it stands. `SETUP.md` is the
   non-developer entry point.
 

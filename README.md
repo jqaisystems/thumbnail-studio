@@ -19,9 +19,10 @@ YouTube thumbnails**, on brand, every time, then scores your title against the
 one that wins. Start from a title, or start from a concept and write the title
 afterwards, which is how most creators actually work.
 
-It was built for, and tuned on, one real channel:
-[The Next New Thing](https://www.youtube.com/@TheNextNewThingAI). That channel
-is the worked example, not the product. Everything specific to it is a setting,
+It was built as a self-directed system and tuned on one real channel:
+[The Next New Thing](https://www.youtube.com/@TheNextNewThingAI), which was the
+test case rather than a client. That channel is the worked example, not the
+product. Everything specific to it is a setting,
 a photo folder or a document you rewrite, so pointing the studio at your own
 channel takes about an hour (`docs/ADAPTING.md`).
 
@@ -158,6 +159,13 @@ for one thing, local background removal, and it loads through a dynamic
 background, so it is not loaded at startup and is not reachable from the HTTP
 surface. If that trade is not one you want, do not use the background-removal
 button and the dependency never runs.
+
+## More about this project
+
+- **[Product page](https://www.ai.joaoqueiros.com/thumbnailstudio)** · what it
+  does, with the seven layouts and colorways shown side by side.
+- **[Case study](https://www.ai.joaoqueiros.com/systems/thumbnail-studio)** ·
+  how it was built, what the testing found, and what changed as a result.
 
 ## License
 

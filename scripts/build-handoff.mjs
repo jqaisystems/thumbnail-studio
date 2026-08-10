@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Builds a runnable private copy of the studio for the person whose channel it
- * was made for: the tracked code, plus their photos, plus a start guide
+ * was built around: the tracked code, plus their photos, plus a start guide
  * addressed to them.
  *
  *   node scripts/build-handoff.mjs
