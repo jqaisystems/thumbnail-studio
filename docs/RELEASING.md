@@ -124,6 +124,13 @@ Verified done, not assumed:
 - [x] **The demo build publishes an allowlist**, not "everything minus a
       denylist". A new secret-bearing setting is therefore absent by default
       rather than shipped by default.
+- [x] **The repository was recreated, not just force-pushed.** A force-push
+      leaves the old objects in GitHub's object store: they are unreachable from
+      any branch and invisible to `git clone`, but
+      `gh api repos/<owner>/<repo>/commits/<old-sha>` still returns them until
+      GitHub garbage-collects, and a public repo serves them to anyone with the
+      SHA. Rewriting history in place does not unpublish anything. Verify with
+      the API, never with a clone. Old SHAs must return 404 or 422.
 - [x] **The history is a single commit.** The 19-commit build history contained
       the ChatGPT project URL above and absolute paths from the author's machine
       in an early `docs/RUNBOOK.md`, and six of its subjects advertised removal of
