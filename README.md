@@ -26,13 +26,13 @@ product. Everything specific to it is a setting,
 a photo folder or a document you rewrite, so pointing the studio at your own
 channel takes about an hour (`docs/ADAPTING.md`).
 
-No cloud account, no database, no required APIs. Your images are made through
-subscriptions you already have. Five interchangeable runners, in order of
-recommendation: the **Codex app's built-in image generation** (no browser, 16
-reference images, 2K, writes files directly), a **Playwright script** through
-your ChatGPT session (free and unlimited, no password stored), a **browser
-agent** (Claude or Codex in Chrome), the **OpenAI API**, or plain copy-paste.
-Every runner reads the same generated instruction pack.
+The workspace runs locally without a database or required API key. Image
+generation uses a provider you choose: the **Codex app**, the included
+**Playwright runner** through your signed-in ChatGPT session, a **browser
+agent**, the **OpenAI API**, or manual copy-paste. Provider access, supported
+formats, usage limits and costs depend on your account. No password is stored
+by the runner. Each route uses the generated instruction pack; see
+[SETUP.md](SETUP.md) for the available setup paths.
 
 ## What it does
 
@@ -64,7 +64,7 @@ Every runner reads the same generated instruction pack.
 
 ## Quickstart
 
-Requirements: [Node.js](https://nodejs.org) 20+.
+Requirements: [Node.js](https://nodejs.org) 18 or newer, matching the package manifest. Use a currently supported LTS release for a new installation.
 
 - **Windows**: double-click `START.bat`
 - **Mac / Linux**: `chmod +x START.command app/start.sh` once, then
@@ -104,9 +104,9 @@ Full guide: `docs/ADAPTING.md`.
 
 ## Recommended setup
 
-The **Codex app** is the main tool for this system: native image generation,
-no browser, up to 16 reference photos, 2K output, and it writes results
-straight into the project. Give it a project's `pack/CODEX_INSTRUCTIONS.md`.
+The **Codex app** is the recommended starting point for this system. Give it
+a project's `pack/CODEX_INSTRUCTIONS.md` and choose image-generation options
+supported by your account. Inspect the saved images before importing or exporting them.
 Everything else (Playwright script, browser agent, OpenAI API, manual) is a
 fallback that reads the same instruction pack.
 
@@ -132,8 +132,7 @@ and work with Claude Code and Codex.
 | `remove-ai-image-metadata` | The full version of what's built in: more formats, whole-folder sweeps, surgical field edits |
 | `local-app-public-demo` | How the read-only demo above is built and verified |
 
-Install: clone the repo and run `./install.sh <skill-name>`, or copy a skill
-folder into `~/.claude/skills/`.
+Install: follow the skills repository's [installation guide](https://github.com/jqaisystems/jqai-ai-skills/blob/main/INSTALL.md). It documents Python prerequisites, explicit discovery targets, preflight checks and safe upgrades.
 
 ## Privacy and security
 
