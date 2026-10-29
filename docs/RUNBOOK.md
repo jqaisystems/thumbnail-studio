@@ -1,6 +1,6 @@
 # RUNBOOK - Thumbnail Studio
 
-How to go from "new video" to "7 thumbnails to choose from" - with zero APIs.
+How to go from a video brief to seven thumbnail options. The workspace runs locally; generation uses your selected provider and account.
 
 ## 0. Start the studio
 
@@ -57,7 +57,7 @@ Then:
    written for this specific video. Those override the mood pills and survive
    rebuilds; **Clear written expressions** returns to automatic.
 
-Attachment rule: at most **10 images per ChatGPT message** (platform limit).
+The browser instruction pack caps its reference list at **10 images per variation**. Check the selected provider's current attachment limits before use.
 The pack automatically caps each variation's attach list: 1-2 host photos,
 1-2 guest photos, then logos and backgrounds until the cap.
 
@@ -74,128 +74,79 @@ projects\<slug>\
 └── output\                    (drop/save generated images here)
 ```
 
-## 2. Generate the images - pick any runner
+<a id="2-generate-the-images---pick-any-runner"></a>
 
-All three runners execute the same `pack\AGENT_INSTRUCTIONS.md`. Nothing is
-tied to one agent.
+## 2. Generate the images
 
-### Runner F - Codex app, native image generation (recommended)
-Chosen by João Queirós as the primary way to run this system, for quality and
-cost. Best quality and the fewest moving parts. GPT Image 2 runs inside the Codex
-desktop app: no browser, direct file writes, up to 16 reference images and
-2K rendering. Open this studio folder as the Codex workspace,
-then give it:
+Choose a route supported by your account. All routes use the project's generated prompt and reference pack and require your own provider access. Usage limits remain those of the selected account.
 
-> Follow the instructions in
-> `<studio-folder>\projects\<slug>\pack\CODEX_INSTRUCTIONS.md`
+### What leaves the workspace
 
-You do not have to type that path. Every project page has a copy button next
-to "In Codex" that puts the real, full path on your clipboard.
+When you generate externally, the selected provider receives the prompt and any references you attach or the runner submits. Guest-image search and channel-feed retrieval also make external requests. Local project files and credentials are not published by preparing a pack. Review what you attach before generation.
 
-That file (written with every pack) tells Codex to attach the references to
-EVERY image (there is no chat carrying them), generate 16:9 at 2K, and save
-to `output\variation-<n>.png`. Portraits have their own
-`CODEX_PORTRAIT_INSTRUCTIONS.md`.
+### Runner F: Codex app
 
-Trade-off to know: image turns consume Codex plan limits about 3-5x faster
-than text turns. On a ChatGPT Pro plan, image generation through the web is
-effectively unlimited, so if Codex quota runs low, switch to Runner E below.
+Open the studio folder as the Codex workspace, then use the project's **In Codex** copy button. It points to:
 
-### Runner A - Claude-in-Chrome (adaptable, costs Claude tokens)
-In Claude Code, with the Chrome extension connected and chatgpt.com logged in:
+```text
+<studio-folder>/projects/<slug>/pack/CODEX_INSTRUCTIONS.md
+```
 
-> Generate the thumbnails for project `<slug>`. Follow
-> `<studio-folder>\projects\<slug>\pack\AGENT_INSTRUCTIONS.md`.
+Follow the pack's reference list and requested output names, including `output/variation-<n>.png`. Portraits have their own `CODEX_PORTRAIT_INSTRUCTIONS.md`. Available tools, reference limits and supported sizes depend on the account and generation tool. Inspect the saved files before import.
 
-Claude opens ChatGPT in your browser, uploads the refs, runs the 7 prompts,
-and saves the images to `output\variation-1..7.png`.
+### Runner E: included Playwright script
 
-### Runner B - Codex-in-Chrome (alternative)
-Concrete steps to switch from Claude to Codex for a run:
+Sign in manually once:
 
-1. Install the **OpenAI Codex Chrome extension** (or open the Codex desktop
-   app and connect its browser mode) and make sure chatgpt.com is logged in.
-2. Give Codex access to the project folder (add
-   this studio folder as a workspace folder so it can read the
-   pack and write to output\).
-3. Prompt Codex:
+```bash
+node scripts/chatgpt-runner.mjs login
+```
 
-> Follow the instructions in
-> `<studio-folder>\projects\<slug>\pack\AGENT_INSTRUCTIONS.md`.
+The browser session stays in the gitignored `data/chatgpt-profile/` folder. The runner does not store or type your password. Keep that session folder private.
 
-If Codex cannot read local files in your setup, open the file yourself,
-paste its full contents as the prompt, and attach the refs manually when
-asked. The instructions are plain-language and self-contained, nothing in
-them is Claude-specific.
+```bash
+node scripts/chatgpt-runner.mjs run <slug>
+node scripts/chatgpt-runner.mjs run <slug> --only 3
+```
 
-### Runner E - Playwright script (zero cost, zero LLM tokens)
-One-time setup: `node scripts\chatgpt-runner.mjs login` opens a private
-Chrome profile; log in to ChatGPT by hand and close the window. The session
-persists in `data\chatgpt-profile\` (no password stored, gitignored,
-delete the folder to log out). Then:
+This route uses your signed-in ChatGPT access rather than an API key. Available generation capacity, limits and costs depend on your account. UI changes can break the runner. Use a supported alternative while it is being updated.
 
-- `node scripts\chatgpt-runner.mjs run <slug>` generates every missing
-  variation as a deterministic script and files results through the app.
-- `node scripts\chatgpt-runner.mjs run <slug> --only 3` regenerates one.
-- Or set Settings > Image generation to "Playwright script" and the
-  Generate button launches it for you.
+The runner defaults to a 45-75 second gap between requests and can pause when a limit is reported. These are local pacing settings, not provider guarantees. Stop on a limit and follow the provider's displayed guidance; avoid repeated retries or concurrent runs.
 
-Consumes nothing: no API credits, no Claude tokens (nothing pilots the
-browser, it is plain code). Trade-off: breaks when ChatGPT changes its UI;
-fall back to the browser agent or manual flow until the script is updated.
+### Runner A: browser agent
 
-RATE-LIMIT ETIQUETTE (learned the hard way): OpenAI throttles BURST SPEED,
-not volume. The runner therefore waits 45-75s between sends (override with
-`--gap <seconds>`, never go below ~30), auto-pauses 10 minutes if a
-"Too many requests" message appears, and resumes where it left off. Avoid
-launching the runner repeatedly in quick succession; if you get limited,
-just wait 5-10 minutes (heavier limits clear within 1-3 hours) and rerun,
-finished variations are never redone.
+Give a compatible browser agent the project's `pack/AGENT_INSTRUCTIONS.md`. Sign in manually before use. The image provider's limits and the browser agent's own account usage both apply. Review the references and outputs.
 
-### Runner D - API provider (optional)
-Settings > Image generation: pick **OpenAI API** and paste a key. A **Generate
-via API** button then appears on each project. Default stays the browser
-runner: zero API cost. The key is written to `data/settings.json` on this
-machine and is never sent back to the page once saved, so the field in Settings
-is blank even when a key is stored; leaving it blank keeps the stored one, and
-there is a **Clear the saved key** button when you want it gone.
+### Runner D: API provider
 
-**Custom command** runs a shell command once per variation, so it is
-deliberately not something the Settings page can switch on: a form that could
-set it would let anyone who reached this port run commands on your machine. To
-use it, put the template in `data/settings.json` by hand:
+In **Settings → Image generation**, choose **OpenAI API** and add your own key. API access and billing are separate from a signed-in app or browser subscription. The key is stored in the gitignored `data/settings.json`; the settings page receives only a saved-key indicator. Use **Clear the saved key** to remove it.
+
+### Custom command: explicit local opt-in
+
+This route runs a shell command and cannot be enabled from the web settings page. Set the template by hand in `data/settings.json` and opt in through the environment, as documented by the application:
 
 ```json
 "provider": "custom",
 "customCommand": "hermes generate --prompt {prompt} --refs {refs} --out {out}"
 ```
 
-`{prompt}` is the path to a text file holding the prompt, `{refs}` is the image
-paths joined with ";", `{out}` is the target PNG. Then start the studio with the
-opt-in set:
+`{prompt}` is a prompt-file path, `{refs}` is a semicolon-separated reference list, and `{out}` is the output PNG path. PowerShell:
 
-```
-THUMBNAIL_STUDIO_ALLOW_CUSTOM_COMMAND=1 node app/server.js
+```powershell
+$env:THUMBNAIL_STUDIO_ALLOW_CUSTOM_COMMAND = "1"
+node app/server.js
 ```
 
-Without that variable the provider refuses to run and says so.
+Only use a command you have inspected and configured for your own environment.
+
+### Runner C: manual copy-paste
+
+Use **Copy prompt** on a variation card. Attach the pack's listed references in your chosen provider, generate within its supported options, then save to `output/variation-<n>.png`. Keep the reference list and output filenames intact. Inspect all images before comparing or exporting them.
 
 ### Networking
-The studio binds to `127.0.0.1`, this machine only. Nothing here asks for a
-password, and the settings API can read and write your configuration, so it is
-not something to expose. If you genuinely need it reachable from another device
-on your network, start it with `HOST=0.0.0.0` and understand that anyone who
-can reach the port has the same access you do.
 
-### Runner C - Manual (always works)
-In the studio UI, each variation card has **Copy prompt**. In ChatGPT:
-0. Work inside the ChatGPT project named in Settings (create it once
-   if missing); every runner uses it so all thumbnail chats stay organized.
-1. New chat in that project (one chat per video - keeps the face consistent across all 7).
-2. Attach `refs\host-ref-1.jpg` (+ guest photo for variation C).
-3. Paste, send, wait, download.
-4. Drag the image onto the variation's empty slot in the UI (it renames it
-   `variation-<n>.png` automatically).
+The studio binds to `127.0.0.1` by default and has no login. Keep it on loopback. Generation, image search and channel-feed requests can still use external services; loopback binding describes who can reach the studio, not where a selected provider processes images.
+
 
 ## 3. Pick the winner and export
 

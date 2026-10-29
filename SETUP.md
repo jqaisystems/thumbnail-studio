@@ -1,13 +1,8 @@
 # Setting up Thumbnail Studio
 
-For people who do not write code. It runs on your own computer, nothing goes to
-the cloud, and it ships with **no credentials of anyone's**. You plug in your
-own ChatGPT or Codex when you want to generate pictures, and until then
-everything else still works.
+The studio runs on your computer and ships without credentials or a signed-in browser session. It prepares briefs, reference packs and comparisons locally. Image generation uses the provider you choose; prompts and attached reference images are sent to that provider when you generate.
 
-Fifteen minutes end to end, most of it waiting for Node to install.
-
----
+You can set up the workspace before choosing a generation provider. Account access, supported features, usage limits and costs belong to the selected provider.
 
 ## 1. Install Node.js (once, about two minutes)
 
@@ -52,31 +47,17 @@ time, they appear automatically.
 
 ## 5. Choose how the pictures get made
 
-The studio writes the prompts and the reference packs. Something else draws
-the pictures. Five options, all reading the same pack, ranked by how well they
-work in practice:
+The studio prepares prompts and reference packs. Choose a generation route you have access to:
 
-1. **Codex app, built-in image generation.** Best quality and best cost. No
-   browser involved, it accepts 16 reference photos, renders at 2K and writes
-   the files straight into the project folder. On a project page, press the
-   copy button next to "In Codex" and paste that line into Codex.
-2. **Playwright script**, free and unlimited on ChatGPT Pro. You log in **once
-   by hand** in a window it opens, and the session stays on your machine.
-   Run `node scripts/chatgpt-runner.mjs login` once, then
-   `node scripts/chatgpt-runner.mjs run <project-name>`.
-3. **Browser agent** (Claude or Codex in Chrome). Copy the chip that says
-   "generate thumbnails for ...".
-4. **OpenAI API**, if you would rather pay per image. Paste your own key in
-   Settings.
-5. **Manual copy-paste** into ChatGPT. Every prompt has a copy button.
+1. **Codex app, built-in image generation.** Open the studio folder in Codex. On a project page, copy the line beside **In Codex** and follow the generated instruction pack. Check that your account supports the requested image features and output formats.
+2. **Included Playwright runner.** This uses your signed-in ChatGPT browser session. Sign in manually once with `node scripts/chatgpt-runner.mjs login`, then run `node scripts/chatgpt-runner.mjs run <project-name>`. The runner stores a local browser session, not your password. Provider limits still apply, and UI changes can interrupt this route.
+3. **Browser agent.** Use the generated agent instructions with a compatible browser tool and a session you have signed in to yourself.
+4. **OpenAI API.** Add your own key in Settings if you choose this route. API access and billing are separate from access through a signed-in app or browser.
+5. **Manual copy-paste.** Copy a prompt and attach its listed references in your chosen provider. Save the results and inspect them before import or export.
 
-There is a fuller comparison inside the app under **Settings → How generation
-connects**, and a plain-language walkthrough under **How it works**.
+The pack can include host and guest photos, logos and backgrounds. Only attach references you are permitted to share with the selected provider. Fetching guest images or the channel feed also makes external requests.
 
-**One rule that matters:** if you drive ChatGPT through a browser, leave 45 to
-75 seconds between messages. OpenAI throttles bursts, not volume. Going faster
-triggers "Too many requests" and can lock the account for hours. The Playwright
-script already paces itself.
+The included browser runner spaces requests by default. That delay is an implementation setting, not a guarantee of available quota. If the provider reports a limit, stop and follow its stated retry time. See the [runbook](docs/RUNBOOK.md#2-generate-the-images) for the supported routes.
 
 ## 6. The normal loop
 
@@ -108,8 +89,9 @@ removes the embedded label, it does not make an image undetectable.
 
 No API key, no ChatGPT session, no passwords, nothing belonging to whoever sent
 you this. The studio never asks for, stores or types a ChatGPT password, and it
-never will. Everything it needs, you supply in Settings, and it stays in
-`data/settings.json` on your own machine.
+never will. You supply your own settings and optional API key, stored in the gitignored
+`data/settings.json`. The browser route stores its signed-in session separately in
+`data/chatgpt-profile/`. Keep both private.
 
 ## If something breaks
 
@@ -117,8 +99,7 @@ never will. Everything it needs, you supply in Settings, and it stays in
   this up for you.
 - Nothing loads at localhost:4626: the window probably closed, start it again.
 - Guest photo is the wrong person: press the ✕ on it and drop in the right one.
-- "Too many requests" from ChatGPT: stop, wait an hour, then keep to the
-  45 to 75 second pacing.
+- "Too many requests" from ChatGPT: stop and follow the provider's stated retry time. Do not repeatedly retry a limited session.
 
 Operational detail lives in `docs/RUNBOOK.md`, the brand rules in
 `docs/BLUEPRINT.md`, and rebranding for anyone else in `docs/ADAPTING.md`.
