@@ -66,6 +66,8 @@ const FORBIDDEN_PATHS = [
 const IMAGE_RE = /\.(jpe?g|png|webp|gif|bmp|tiff?|heic|heif|avif|svg|ai|eps|psd|sketch|fig)$/i;
 const ALLOWED_IMAGES = new Set([
   'docs/readme-hero.gif',
+  'docs/readme-hero-poster.png',
+  'assets/social-preview.png',
   ...Array.from({ length: 7 }, (_, i) => [
     `logo/logo_thumbnail_studio-0${i + 1}.png`,
     `logo/logo_thumbnail_studio-0${i + 1}.svg`,

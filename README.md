@@ -1,15 +1,9 @@
-<p align="center">
-  <img src="docs/readme-hero.gif"
-       alt="The Thumbnail Studio wordmark assembling, then the line 1 brief arrow 7 options, then seven coloured dots lighting up, one per colorway."
-       width="800">
-</p>
-
 # Thumbnail Studio
 
 <p align="center">
   <a href="LICENSE"><img alt="MIT licensed" src="https://img.shields.io/badge/license-MIT-6E63F2?style=flat-square"></a>
   <img alt="Requires Node 18 or newer" src="https://img.shields.io/badge/node-%E2%89%A5%2018-6E63F2?style=flat-square">
-  <img alt="Runs entirely on your machine" src="https://img.shields.io/badge/runs-100%25%20locally-6E63F2?style=flat-square">
+  <img alt="The workspace runs locally" src="https://img.shields.io/badge/workspace-local-6E63F2?style=flat-square">
   <img alt="No API key required" src="https://img.shields.io/badge/API%20key-optional-6E63F2?style=flat-square">
   <img alt="Windows, macOS and Linux" src="https://img.shields.io/badge/os-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-6E63F2?style=flat-square">
 </p>
@@ -33,6 +27,48 @@ agent**, the **OpenAI API**, or manual copy-paste. Provider access, supported
 formats, usage limits and costs depend on your account. No password is stored
 by the runner. Each route uses the generated instruction pack; see
 [SETUP.md](SETUP.md) for the available setup paths.
+
+
+<p align="center">
+  <picture><source media="(prefers-reduced-motion: reduce)" srcset="docs/readme-hero-poster.png"><img src="docs/readme-hero.gif"
+       alt="The Thumbnail Studio wordmark assembling, then the line 1 brief arrow 7 options, then seven coloured dots lighting up, one per colorway."
+       width="800"></picture>
+</p>
+
+[Static preview](docs/readme-hero-poster.png) · [Requirements](#requirements) · [Quick start](#quick-start) · [Documentation](#documentation) · [Support](#support)
+
+## Requirements
+
+Node.js 18 or newer is the package minimum; use a currently supported LTS release for a new installation. Windows, macOS and Linux launchers are included. Image generation also needs access to your chosen provider. See [SETUP.md](SETUP.md).
+
+<a id="quickstart"></a>
+
+## Quick start
+
+- **Windows**: double-click `START.bat`
+- **Mac / Linux**: `chmod +x START.command app/start.sh` once, then
+  double-click `START.command` (or run `bash app/start.sh`)
+
+The studio opens at http://localhost:4626. It starts empty, which is the
+correct empty: no projects, no photos, no keys.
+
+Two things make it yours, both in the first five minutes:
+
+1. Put 3 to 5 photos of whoever appears in your thumbnails into
+   `brand/host-photos/`. At least one sharp, frontal headshot. They are attached
+   to every generation, so they decide how well the likeness holds.
+2. Open **Settings** and fill in host name, show name and your YouTube channel
+   URL. Pick your main host photo from the dropdown while you are there.
+
+Then read the **How it works** page in the app, or `docs/TUTORIAL.md`.
+
+## Documentation
+
+[Setup and providers](SETUP.md) · [Tutorial](docs/TUTORIAL.md) · [Adapt to your brand](docs/ADAPTING.md) · [Runbook](docs/RUNBOOK.md)
+
+## Support
+
+Use [GitHub issues](https://github.com/jqaisystems/thumbnail-studio/issues/new/choose) with your operating system, Node version and generation route. Share a minimal redacted reproduction. Keep browser profiles, photos without permission, keys and private project packs out of issue attachments.
 
 ## What it does
 
@@ -61,27 +97,6 @@ by the runner. Each route uses the generated instruction pack; see
   generated images without re-encoding them, and sweeps again before building
   a delivery ZIP. Turn it off in Settings if you want the label kept.
 - **Roadmap**: monthly improvement proposals you accept or decline.
-
-## Quickstart
-
-Requirements: [Node.js](https://nodejs.org) 18 or newer, matching the package manifest. Use a currently supported LTS release for a new installation.
-
-- **Windows**: double-click `START.bat`
-- **Mac / Linux**: `chmod +x START.command app/start.sh` once, then
-  double-click `START.command` (or run `bash app/start.sh`)
-
-The studio opens at http://localhost:4626. It starts empty, which is the
-correct empty: no projects, no photos, no keys.
-
-Two things make it yours, both in the first five minutes:
-
-1. Put 3 to 5 photos of whoever appears in your thumbnails into
-   `brand/host-photos/`. At least one sharp, frontal headshot. They are attached
-   to every generation, so they decide how well the likeness holds.
-2. Open **Settings** and fill in host name, show name and your YouTube channel
-   URL. Pick your main host photo from the dropdown while you are there.
-
-Then read the **How it works** page in the app, or `docs/TUTORIAL.md`.
 
 ## Folder map
 
