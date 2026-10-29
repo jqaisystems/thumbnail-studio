@@ -8,26 +8,7 @@
   <img alt="Windows, macOS and Linux" src="https://img.shields.io/badge/os-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-6E63F2?style=flat-square">
 </p>
 
-A local, private studio that turns one video brief into **7 ready-to-choose
-YouTube thumbnails**, on brand, every time, then scores your title against the
-one that wins. Start from a title, or start from a concept and write the title
-afterwards, which is how most creators actually work.
-
-It was built as a self-directed system and tuned on one real channel:
-[The Next New Thing](https://www.youtube.com/@TheNextNewThingAI), which was the
-test case rather than a client. That channel is the worked example, not the
-product. Everything specific to it is a setting,
-a photo folder or a document you rewrite, so pointing the studio at your own
-channel takes about an hour (`docs/ADAPTING.md`).
-
-The workspace runs locally without a database or required API key. Image
-generation uses a provider you choose: the **Codex app**, the included
-**Playwright runner** through your signed-in ChatGPT session, a **browser
-agent**, the **OpenAI API**, or manual copy-paste. Provider access, supported
-formats, usage limits and costs depend on your account. No password is stored
-by the runner. Each route uses the generated instruction pack; see
-[SETUP.md](SETUP.md) for the available setup paths.
-
+Plan, generate and compare **seven on-brand YouTube thumbnail options** from one video brief. The workspace runs locally; image generation uses your chosen provider and its account limits.
 
 <p align="center">
   <picture><source media="(prefers-reduced-motion: reduce)" srcset="docs/readme-hero-poster.png"><img src="docs/readme-hero.gif"
@@ -69,6 +50,15 @@ Then read the **How it works** page in the app, or `docs/TUTORIAL.md`.
 ## Support
 
 Use [GitHub issues](https://github.com/jqaisystems/thumbnail-studio/issues/new/choose) with your operating system, Node version and generation route. Share a minimal redacted reproduction. Keep browser profiles, photos without permission, keys and private project packs out of issue attachments.
+
+<details>
+<summary>Generation providers and the worked example</summary>
+
+The workspace runs locally without a database or required API key. Image generation uses a provider you choose: the Codex app, the included Playwright runner through your signed-in ChatGPT session, a browser agent, the OpenAI API, or manual copy-paste. Access, supported formats, usage limits and costs depend on your account. The runner does not store your password. See [setup and providers](SETUP.md).
+
+This was built as a self-directed project and tuned using [The Next New Thing](https://www.youtube.com/@TheNextNewThingAI) as a real worked example, not a client engagement. Channel details, photos and brand documents are configurable. See [Adapt to your brand](docs/ADAPTING.md).
+
+</details>
 
 ## What it does
 
